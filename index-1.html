@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rock Paper Scissors</title>
+<style>
+body{font-family:Arial;background:#4facfe;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}
+.box{background:#fff;padding:20px;border-radius:12px;text-align:center}
+button{padding:10px 16px;margin:6px}
+</style></head>
+<body><div class="box">
+<h2 id="name"></h2>
+<button onclick="play('Rock')">🪨 Rock</button>
+<button onclick="play('Paper')">📄 Paper</button>
+<button onclick="play('Scissors')">✂️ Scissors</button>
+<p id="out"></p><p id="score"></p></div>
+<script>
+let n=prompt("Enter Your Name")||"Player";
+document.getElementById("name").innerText="Welcome, "+n;
+let ps=0,cs=0;
+function play(c){
+let a=["Rock","Paper","Scissors"];
+let pc=a[Math.floor(Math.random()*3)];
+let r;
+if(c===pc) r="Draw";
+else if((c=="Rock"&&pc=="Scissors")||(c=="Paper"&&pc=="Rock")||(c=="Scissors"&&pc=="Paper")){r=n+" Wins!";ps++;}
+else{r="Computer Wins!";cs++;}
+document.getElementById("out").innerHTML=`You: ${c}<br>Computer: ${pc}<br><b>${r}</b>`;
+document.getElementById("score").innerText=`${n}: ${ps} | Computer: ${cs}`;
+}
+</script></body></html>
