@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock Paper Scissors</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 20px; }
+    .btn { font-size: 18px; padding: 10px 20px; margin: 8px; cursor: pointer; border-radius: 8px; border: 1px solid #ccc; }
+    .scores { font-size: 20px; margin: 20px 0; font-weight: bold; }
+    #result { font-size: 22px; font-weight: bold; margin: 20px 0; }
+  </style>
 </head>
 <body>
 
@@ -12,12 +18,28 @@
     <h1>🎮 Rock Paper Scissors</h1>
   </div>
 
-  <!-- Note: Aapke Rock/Paper/Scissors buttons aur Result/Score IDs (<span id="you">, <span id="cpu">, <div id="result">) yahan rahenge -->
+  <!-- Buttons for game options -->
+  <div class="choices">
+    <button class="btn" onclick="play('Rock')">🪨 Rock</button>
+    <button class="btn" onclick="play('Paper')">📄 Paper</button>
+    <button class="btn" onclick="play('Scissors')">✂️ Scissors</button>
+  </div>
+
+  <!-- Score Board -->
+  <div class="scores">
+    <p>You: <span id="you">0</span> | Computer: <span id="cpu">0</span></p>
+  </div>
+
+  <!-- Result Display Area -->
+  <div id="result"></div>
+
+  <!-- Reset Button -->
+  <button class="btn" onclick="resetGame()">🔄 Reset Game</button>
 
   <script>
     // Player name prompt and Welcome message
     let playerName = prompt("Enter Your Name");
-    if (playerName == null || playerName.trim() == "") {
+    if (playerName == null || playerName.trim() === "") {
       playerName = "Player";
     }
     document.getElementById("welcome").innerHTML = "👋 Welcome " + playerName;
@@ -32,12 +54,12 @@
       let computer = arr[Math.floor(Math.random() * 3)];
       let result = "";
 
-      if (user == computer) {
+      if (user === computer) {
         result = "🤝 Draw";
       } else if (
-        (user == "Rock" && computer == "Scissors") ||
-        (user == "Paper" && computer == "Rock") ||
-        (user == "Scissors" && computer == "Paper")
+        (user === "Rock" && computer === "Scissors") ||
+        (user === "Paper" && computer === "Rock") ||
+        (user === "Scissors" && computer === "Paper")
       ) {
         result = "🎉 You Win!";
         you++;
@@ -47,7 +69,7 @@
       }
 
       document.getElementById("result").innerHTML =
-        "You: " + user + "<br>Computer: " + computer + "<br><br>" + result;
+        "You chose: <b>" + user + "</b><br>Computer chose: <b>" + computer + "</b><br><br>" + result;
       document.getElementById("you").innerText = you;
       document.getElementById("cpu").innerText = cpu;
     }
