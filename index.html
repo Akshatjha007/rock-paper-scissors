@@ -1,29 +1,138 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Rock Paper Scissors</title>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rock Paper Scissors - Akshat Jha</title>
+
 <style>
-body{font-family:Arial;background:#4facfe;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}
-.box{background:#fff;padding:20px;border-radius:12px;text-align:center}
-button{padding:10px 16px;margin:6px}
-</style></head>
-<body><div class="box">
-<h2 id="name"></h2>
-<button onclick="play('Rock')">🪨 Rock</button>
-<button onclick="play('Paper')">📄 Paper</button>
-<button onclick="play('Scissors')">✂️ Scissors</button>
-<p id="out"></p><p id="score"></p></div>
-<script>
-let n=prompt("Enter Your Name")||"Player";
-document.getElementById("name").innerText="Welcome, "+n;
-let ps=0,cs=0;
-function play(c){
-let a=["Rock","Paper","Scissors"];
-let pc=a[Math.floor(Math.random()*3)];
-let r;
-if(c===pc) r="Draw";
-else if((c=="Rock"&&pc=="Scissors")||(c=="Paper"&&pc=="Rock")||(c=="Scissors"&&pc=="Paper")){r=n+" Wins!";ps++;}
-else{r="Computer Wins!";cs++;}
-document.getElementById("out").innerHTML=`You: ${c}<br>Computer: ${pc}<br><b>${r}</b>`;
-document.getElementById("score").innerText=`${n}: ${ps} | Computer: ${cs}`;
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#111;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
 }
-</script></body></html>
+.box{
+background:#222;
+padding:25px;
+border-radius:15px;
+text-align:center;
+width:320px;
+box-shadow:0 0 20px cyan;
+}
+button{
+padding:12px 20px;
+margin:8px;
+font-size:18px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+transition:.3s;
+}
+button:hover{
+transform:scale(1.1);
+background:cyan;
+color:black;
+}
+#result{
+margin-top:20px;
+font-size:22px;
+font-weight:bold;
+}
+#score{
+margin-top:15px;
+font-size:18px;
+}
+.reset{
+background:red;
+color:white;
+}
+footer{
+margin-top:20px;
+font-size:14px;
+color:#aaa;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>👋 Welcome Akshat Jha</h2>
+
+<h1>🎮 Rock Paper Scissors</h1>
+
+<button onclick="play('Rock')">🪨 Rock</button>
+
+<button onclick="play('Paper')">📄 Paper</button>
+
+<button onclick="play('Scissors')">✂️ Scissors</button>
+
+<div id="result"></div>
+
+<div id="score">
+You : <span id="you">0</span>
+|
+Computer : <span id="cpu">0</span>
+</div>
+
+<button class="reset" onclick="resetGame()">Reset Game</button>
+
+<footer>❤️ Made by Akshat Jha</footer>
+
+</div>
+
+<script>
+
+let you=0;
+let cpu=0;
+
+function play(user){
+
+let arr=["Rock","Paper","Scissors"];
+
+let computer=arr[Math.floor(Math.random()*3)];
+
+let result="";
+
+if(user==computer){
+result="😐 Draw";
+}
+else if(
+(user=="Rock"&&computer=="Scissors")||
+(user=="Paper"&&computer=="Rock")||
+(user=="Scissors"&&computer=="Paper")
+){
+result="🎉 You Win!";
+you++;
+}
+else{
+result="💻 Computer Wins!";
+cpu++;
+}
+
+document.getElementById("result").innerHTML=
+"You: "+user+"<br>Computer: "+computer+"<br><br>"+result;
+
+document.getElementById("you").innerText=you;
+document.getElementById("cpu").innerText=cpu;
+
+}
+
+function resetGame(){
+you=0;
+cpu=0;
+document.getElementById("you").innerText=0;
+document.getElementById("cpu").innerText=0;
+document.getElementById("result").innerHTML="";
+}
+
+</script>
+
+</body>
+</html>
