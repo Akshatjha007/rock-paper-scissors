@@ -63,7 +63,7 @@ color:#aaa;
 
 <div class="box">
 
-<h2>👋 Welcome Akshat Jha</h2>
+<h2 id="welcome"></h2>
 
 <h1>🎮 Rock Paper Scissors</h1>
 
@@ -88,50 +88,15 @@ Computer : <span id="cpu">0</span>
 </div>
 
 <script>
+let playerName = prompt("Enter Your Name");
 
-let you=0;
-let cpu=0;
-
-function play(user){
-
-let arr=["Rock","Paper","Scissors"];
-
-let computer=arr[Math.floor(Math.random()*3)];
-
-let result="";
-
-if(user==computer){
-result="😐 Draw";
-}
-else if(
-(user=="Rock"&&computer=="Scissors")||
-(user=="Paper"&&computer=="Rock")||
-(user=="Scissors"&&computer=="Paper")
-){
-result="🎉 You Win!";
-you++;
-}
-else{
-result="💻 Computer Wins!";
-cpu++;
+if(playerName==null || playerName.trim()==""){
+    playerName="Player";
 }
 
-document.getElementById("result").innerHTML=
-"You: "+user+"<br>Computer: "+computer+"<br><br>"+result;
-
-document.getElementById("you").innerText=you;
-document.getElementById("cpu").innerText=cpu;
-
-}
-
-function resetGame(){
-you=0;
-cpu=0;
-document.getElementById("you").innerText=0;
-document.getElementById("cpu").innerText=0;
-document.getElementById("result").innerHTML="";
-}
-
+document.getElementById("welcome").innerHTML =
+"👋 Welcome " + playerName;
+  
 </script>
 
 </body>
